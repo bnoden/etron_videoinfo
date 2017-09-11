@@ -1,0 +1,18 @@
+<head></head>
+<body>
+  <h2>Video Info</h2>
+  <form>
+    <div>
+      <label>Select video</label>
+      <input type="file" accept="video/*" />
+    </div>
+    <button type="submit">Get Info</button>
+  </form>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', () => {
+      event.preventDefault();
+    });
+  </script>
+
+</body>
