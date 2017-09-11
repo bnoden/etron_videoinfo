@@ -1,3 +1,7 @@
 const electron = require('electron');
 
-import electron from 'electron';
+const { app } = electron;
+
+app.on('ready', () => {
+  console.log('App is ready');
+});
