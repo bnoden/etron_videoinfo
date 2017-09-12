@@ -1,21 +1,28 @@
 <head></head>
-<body>
-  <h2>Video Info</h2>
-  <form>
-    <div>
-      <label>Select video</label>
-      <input type="file" accept="video/*" />
-    </div>
-    <button type="submit">Get Info</button>
-  </form>
+<body style="background-color: #F5F8FA;">
 
-  <script>
-    document.querySelector('form').addEventListener('submit', () => {
-      event.preventDefault();
+  <div id="container" style="font-family: Verdana, Arial; color: #F5F8FA; font-weight: 500;
+  background-color: #FF601C; max-width: 100%; height: auto; padding: 6px; border-radius: 3px;">
+    <h1>Video Info</h1>
+    <form>
+      <div>
+        <label>Select video</label>
+        <input type="file" accept="video/*" />
+      </div>
+      <button type="submit">Get Info</button>
+    </form>
 
-      const file = document.querySelector('input').files[0];
+    <script>
+    const electron = require('electron');
+    const { ipcRenderer } = electron;
 
-    });
-  </script>
+document.querySelector('form').addEventListener('submit', () => {
+  event.preventDefault();
+  const { path } = document.querySelector('input').files[0];
+
+  ipcRenderer.send('video:submit', path);
+});
+</script>
+  </div>
 
 </body>
