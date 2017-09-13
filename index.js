@@ -6,7 +6,11 @@ const { app, BrowserWindow, ipcMain } = electron;
 let mainWindow;
 
 app.on('ready', () => {
-  mainWindow = new BrowserWindow({});
+  mainWindow = new BrowserWindow({
+    width: 450,
+    height: 160,
+    resizable: false
+  });
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 });
 

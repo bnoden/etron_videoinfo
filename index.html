@@ -3,17 +3,17 @@
 
   <div id="container" style="font-family: Verdana, Arial; color: #F5F8FA; font-weight: 500;
   background-color: #FF601C; max-width: 100%; height: auto; padding: 6px; border-radius: 3px;">
-    <h1>Video Info</h1>
     <form>
       <div>
         <label>Select video</label>
         <input type="file" accept="video/*" />
       </div>
-      <button type="submit">Get Info</button>
+      <input class="btn_getInfo" type="submit" value="Get Info" style="background-color: #3072FF;
+      color: #F5F8FA; border-style: none; border-radius: 3px; cursor: pointer; width: 60px; height: 20px;" />
     </form>
 
-    <div id="result" style="font-family: Consolas, Verdana, Arial; font-size: 17px; font-weight: 100;
-    background-color: #3A5FB0; color: #F5F8FA; border-radius: 6px; max-width: 246px; padding-left: 8px;"></div>
+    <div id="result" style="font-family: Courier; font-size: 16px; font-weight: 500;
+    background-color: #FFFEFC; color: #F05411; border-radius: 8px; max-width: 246px; padding-left: 8px;"></div>
 
     <script>
     const electron = require('electron');
