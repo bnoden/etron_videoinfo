@@ -27,14 +27,15 @@ document.querySelector('form').addEventListener('submit', () => {
 });
 
 ipcRenderer.on('video:metadata', (event, duration) => {
-  const durHourTemp = duration>=3600 ? (duration/3600) - (duration%3600) : 0;
-  const durHour = durHourTemp ? durHourTemp.toString() : '00';
-  const durMinTemp = duration>=60 ? (duration/60-1).toFixed() : 0;
-  const durMin = durMinTemp>=10 ? durMinTemp.toString() : `0${durMinTemp}`;
-  const durSecTemp = (duration%60).toFixed(2);
-  const durSec = durSecTemp>=10 ? durSecTemp.toString() : `0${durSecTemp}`;
+  const durHour = duration>=3600 ? (duration/3600) - (duration%3600) : 0;
+  const durMin = duration>=60 ? (duration/60-1).toFixed() : 0;
+  const durSec = (duration%60).toFixed(2);
 
-  const durationFormat = `${durHour} : ${durMin} : ${durSec}`;
+  const durHourStr = durHour ? durHour.toString() : '00';
+  const durMinStr = durMin>=10 ? durMin.toString() : `0${durMin}`;
+  const durSecStr = durSec>=10 ? durSec.toString() : `0${durSec}`;
+
+  const durationFormat = `${durHourStr} : ${durMinStr} : ${durSecStr}`;
 
   document.querySelector('#result').innerHTML = `Duration ${durationFormat}`;
 });
