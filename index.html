@@ -12,6 +12,9 @@
       <button type="submit">Get Info</button>
     </form>
 
+    <div id="result" style="font-family: Consolas, Verdana, Arial; font-size: 17px; font-weight: 100;
+    background-color: #3A5FB0; color: #F5F8FA; border-radius: 6px; max-width: 246px; padding-left: 8px;"></div>
+
     <script>
     const electron = require('electron');
     const { ipcRenderer } = electron;
@@ -21,6 +24,19 @@ document.querySelector('form').addEventListener('submit', () => {
   const { path } = document.querySelector('input').files[0];
 
   ipcRenderer.send('video:submit', path);
+});
+
+ipcRenderer.on('video:metadata', (event, duration) => {
+  const durHourTemp = duration>=3600 ? (duration/3600) - (duration%3600) : 0;
+  const durHour = durHourTemp ? durHourTemp.toString() : '00';
+  const durMinTemp = duration>=60 ? (duration/60-1).toFixed() : 0;
+  const durMin = durMinTemp>=10 ? durMinTemp.toString() : `0${durMinTemp}`;
+  const durSecTemp = (duration%60).toFixed(2);
+  const durSec = durSecTemp>=10 ? durSecTemp.toString() : `0${durSecTemp}`;
+
+  const durationFormat = `${durHour} : ${durMin} : ${durSec}`;
+
+  document.querySelector('#result').innerHTML = `Duration ${durationFormat}`;
 });
 </script>
   </div>
